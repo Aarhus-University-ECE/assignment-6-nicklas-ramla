@@ -21,8 +21,15 @@ void add(node *head, int x) {
 
 // exersice 3.b
 int size(node *l) {
+  assert(l != NULL);                                                   /*Precondition*/
+  node *p = l;                                                         /**p peger på det første element*/
+  int list_size = 0;                                                   /*Tælle int der tæller list size*/
+  while (p->next != NULL){                                             /*While loop der går igennem listen, og tilføjer 1 til tælleren, for hvert element*/
+    p = p->next;
+    list_size++;
+  }
 
-	return 0;
+	return list_size;                                                    /*returnerer Tælle inten*/
 }
 
 // exersice 3.c and 3.d
@@ -31,8 +38,10 @@ void printout(node *l) {
   //       The last element's next is NULL
   // post: The values of the list are printed out
   node *p = l->next;
-  while (p != NULL) {
-    printf("%d, ", p->data);
+  printf("\nListens værdier er: ");
+  while (p != NULL) {                                                 /*While loop der kører igennem listen*/
+    printf("%d, ", p->data);                                          /*Printer data fra første element, som ikke er head*/
+    p = p->next;                                                      /*Får p til at pege på det næste element*/
   }
   printf("\n");
 }
@@ -42,8 +51,17 @@ int largest(node *l) {
   // pre:  head poinst to the first, empty element.
   // 	     The last element's next is NULL.
   // post: Returns the largest value of the list
+  assert(l != NULL);                                                /*Precondition*/
+  node *p = l;                                                      /**p peger på det første element*/
+  int largest_val = p->data;                                        /*Int der gemmer det største elements værdi, starter med det første elements værdi*/
+  while(p != NULL) {                                                /*While loop der kører igennem listen, og cheker om hver elements værdi er større end largest_val. Hvis ja gør int lig med element værdi*/
+    if (p->data > largest_val) {
+      largest_val = p->data;
+    }
+    p = p->next;
+  }
 
-  return 0;
+  return largest_val;                                               /*Returnerer den største værdi*/
 }
 
 #ifndef TEST
@@ -57,6 +75,12 @@ int main() {
   // Show list here
   add(list, 2);
   // Show list here
+ 
+ int list_size = size(list);                                       /*Int der kalder size, for at få værdien af listens længde*/
+  printf("\nListens længde er: %d", list_size);                                        /*Printer listens længde*/
+  printout(list);
+  int largest_val = largest(list);
+  printf("Den største værdi i listen er: %d", largest_val);
 
   return 0;
 }
