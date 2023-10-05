@@ -77,10 +77,10 @@ int main() {
   // Show list here
  
  int list_size = size(list);                                       /*Int der kalder size, for at få værdien af listens længde*/
-  printf("\nListens længde er: %d", list_size);                                        /*Printer listens længde*/
-  printout(list);
-  int largest_val = largest(list);
-  printf("Den største værdi i listen er: %d", largest_val);
+  printf("\nListens længde er: %d", list_size);                    /*Printer listens længde*/
+  printout(list);                                                  /*Printer hele listen*/
+  int largest_val = largest(list);                                 /*Int der kalder largest, for at få elementet med den største værdis værdi*/                     
+  printf("Den største værdi i listen er: %d", largest_val);        /*Printer den største værdi*/
 
   return 0;
 }
